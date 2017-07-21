@@ -21,7 +21,15 @@
            (helper (first a-seq) (rest a-seq))))
 
 (defn seq= [seq1 seq2]
-  ":(")
+      (let [helper (fn [acc new-seq1 new-seq2]
+                       (cond
+                         (and (empty? new-seq1) (empty? new-seq2))
+                          acc
+                         (or (empty? new-seq1) (empty? new-seq2))
+                          false
+                         :else
+                          (recur (= (first new-seq1) (first new-seq2)) (rest new-seq1) (rest new-seq2))))]
+           (helper true seq1 seq2)))
 
 (defn find-first-index [pred a-seq]
   ":(")
