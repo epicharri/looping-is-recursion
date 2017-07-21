@@ -79,5 +79,13 @@
                 (recur (inc index) f-n (+ f-n-1 f-n))))))
 
 (defn cut-at-repetition [a-seq]
-  [":("])
+      (loop [result-seq []
+             remaining-seq a-seq]
+              (cond
+                (empty? remaining-seq)
+                  result-seq
+                (true? (some #(= (first remaining-seq) %) result-seq))
+                  result-seq
+                :else
+                  (recur (conj result-seq (first remaining-seq)) (rest remaining-seq)))))
 
