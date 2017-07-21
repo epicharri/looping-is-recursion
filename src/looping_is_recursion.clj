@@ -62,15 +62,21 @@
 
 (defn parity [a-seq]
       (loop [result-set #{}
-             rest-of-set a-seq
-             ]
+             rest-of-set a-seq]
             (if (empty? rest-of-set)
               result-set
               (recur (toggle result-set (first rest-of-set))
                      (rest rest-of-set)))))
 
 (defn fast-fibo [n]
-  ":(")
+      (if (< n 2)
+        n
+        (loop [index 2
+             f-n-1 1
+             f-n 1]
+              (if (= index n)
+                f-n
+                (recur (inc index) f-n (+ f-n-1 f-n))))))
 
 (defn cut-at-repetition [a-seq]
   [":("])
