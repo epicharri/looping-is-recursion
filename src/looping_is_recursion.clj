@@ -55,8 +55,19 @@
                   (/ the-sum the-count))
                 (recur (+ the-sum (first the-seq)) (inc the-count) (rest the-seq)))))
 
+(defn toggle [a-set elem]
+      (if (contains? a-set elem)
+        (disj a-set elem)
+        (conj a-set elem)))
+
 (defn parity [a-seq]
-  ":(")
+      (loop [result-set #{}
+             rest-of-set a-seq
+             ]
+            (if (empty? rest-of-set)
+              result-set
+              (recur (toggle result-set (first rest-of-set))
+                     (rest rest-of-set)))))
 
 (defn fast-fibo [n]
   ":(")
