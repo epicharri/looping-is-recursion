@@ -32,7 +32,17 @@
            (helper true seq1 seq2)))
 
 (defn find-first-index [pred a-seq]
-  ":(")
+      (loop [index 0
+             the-pred pred
+             the-seq a-seq
+             ]
+            (cond
+              (empty? the-seq)
+                nil
+              (the-pred (first the-seq))
+                index
+              :else
+                (recur (inc index) the-pred (rest the-seq)))))
 
 (defn avg [a-seq]
   -1)
