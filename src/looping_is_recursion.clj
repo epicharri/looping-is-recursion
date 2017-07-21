@@ -45,7 +45,15 @@
                 (recur (inc index) the-pred (rest the-seq)))))
 
 (defn avg [a-seq]
-  -1)
+      (loop [the-sum 0
+             the-count 0
+             the-seq a-seq
+             ]
+            (if (empty? the-seq)
+                (if (zero? the-count)
+                  nil
+                  (/ the-sum the-count))
+                (recur (+ the-sum (first the-seq)) (inc the-count) (rest the-seq)))))
 
 (defn parity [a-seq]
   ":(")
